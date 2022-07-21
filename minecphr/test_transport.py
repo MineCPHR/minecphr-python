@@ -1,11 +1,11 @@
-import encoding
+import transport
 from hypothesis import given, strategies as st
 
 
 @given(data=st.binary())
 def test_roundtrip_encode_decode(data: bytes):
-    chunks = encoding.encode(data)
-    r = b''.join(encoding.decode(ch) for ch in chunks)
+    chunks = transport.encode(data)
+    r = b''.join(transport.decode(ch) for ch in chunks)
     assert r == data
 
 
@@ -13,14 +13,14 @@ def test_roundtrip_encode_decode(data: bytes):
 def test_chunk_length(data: bytes):
     '''Ensure we don't go over the maximum length of MC chat messages'''
     MAX = 255
-    chunks = encoding.encode(data)
+    chunks = transport.encode(data)
     for ch in chunks:
         assert len(ch) <= MAX
 
 
 def test_empty():
     '''if there is no data, we send 0 chunks'''
-    assert encoding.encode(b'') == []
+    assert transport.encode(b'') == []
 
 
 def test_samples():
@@ -31,5 +31,5 @@ def test_samples():
             ]
 
     for data, msg in SAMPLES:
-        assert encoding.decode(msg) == data
-        assert encoding.encode(data) == [msg]
+        assert transport.decode(msg) == data
+        assert transport.encode(data) == [msg]
