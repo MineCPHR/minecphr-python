@@ -11,7 +11,7 @@ import bech32
 CHUNK_LEN = 150
 
 # Distinctive prefix for the chat messages
-PREFIX = 'cphr1'
+PREFIX = 'cphr0'
 
 
 def encode(payload: bytes) -> list[str]:

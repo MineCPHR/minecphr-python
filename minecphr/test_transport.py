@@ -25,9 +25,9 @@ def test_empty():
 
 def test_samples():
     SAMPLES = [
-            (b'hello', 'cphr1dpjkcmr0'),
-            (b'OP', 'cphr1fagq'),
-            (b'O1`', 'cphr1fuckq'),
+            (b'hello', 'cphr0dpjkcmr0'),
+            (b'OP', 'cphr0fagq'),
+            (b'O1`', 'cphr0fuckq'),
             ]
 
     for data, msg in SAMPLES:
